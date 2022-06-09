@@ -1,0 +1,9 @@
+/node_modules/
+/bin/*
+/snapshots/*
+/recordings/*
+/tests/
+/videos/*
+
+.env
+.DS_Store
