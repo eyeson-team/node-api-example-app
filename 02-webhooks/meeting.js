@@ -54,6 +54,8 @@ const stop = async () => {
     sse.send('meeting', { type: 'exit' });
 };
 
+const getClient = () => client;
+
 const getClientInfo = (current = client) => {
     if (current) {
         const { data } = current;
@@ -92,5 +94,5 @@ const getClientInfo = (current = client) => {
 };
 
 export default {
-    getApiStatus, join, stop, getClientInfo, onEvent
+    getApiStatus, join, stop, getClient, getClientInfo, onEvent
 };
