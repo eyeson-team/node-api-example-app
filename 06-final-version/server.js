@@ -40,7 +40,12 @@ app.use(express.json({
  * Server Sent Events
  * synchronize clients
  */
-app.get('/sse', sse.init);
+app.get('/sse', (_req, res, next) => {
+    if (typeof res.flush !== 'function') {
+        res.flush = () => {}; 
+    }
+    next();
+}, sse.init);
 
 /**
  * eyeson webhook endpoint
@@ -54,7 +59,7 @@ app.route('/webhook')
     })
     .post((req, res) => {
         const data = req.body;
-        // console.log('webhook', data);
+        console.log('webhook', data);
         try {
             if (data.type === 'room_update') {
                 meeting.onEvent(data.room);

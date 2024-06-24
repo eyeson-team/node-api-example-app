@@ -22,7 +22,12 @@ app.use(express.json({
  * Server Sent Events
  * synchronize clients
  */
-app.get('/sse', sse.init);
+app.get('/sse', (_req, res, next) => {
+    if (typeof res.flush !== 'function') {
+        res.flush = () => {}; 
+    }
+    next();
+}, sse.init);
 
 /**
  * eyeson webhook endpoint

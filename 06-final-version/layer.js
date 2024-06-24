@@ -1,5 +1,5 @@
 import fetch, { FormData, Blob } from 'node-fetch';
-import nodeCanvas from 'canvas';
+import nodeCanvas from '@napi-rs/canvas';
 import meeting from './meeting.js';
 
 /**
@@ -9,10 +9,10 @@ import meeting from './meeting.js';
  * @see https://eyeson-team.github.io/api/api-reference/#content-integration-aka-layers
  */
 
-const { createCanvas, loadImage, registerFont } = nodeCanvas;
+const { createCanvas, loadImage, GlobalFonts } = nodeCanvas;
 
-registerFont('./assets/fonts/Open_Sans/OpenSans-Regular.ttf', { family: 'OpenSans' });
-registerFont('./assets/fonts/Open_Sans/OpenSans-Bold.ttf', { family: 'OpenSans', weight: 'bold' });
+GlobalFonts.registerFromPath('./assets/fonts/Open_Sans/OpenSans-Regular.ttf', 'OpenSans');
+GlobalFonts.registerFromPath('./assets/fonts/Open_Sans/OpenSans-Bold.ttf', 'OpenSansBold');
 
 const removeEmojiCharacters = str =>
     str.replace(/([\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF])\s*/g, '');
@@ -117,7 +117,7 @@ const createTwitterOverlay = async tweet => {
     ctx.fillStyle = 'black';
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';
-    ctx.font = 'bold 16px OpenSans';
+    ctx.font = 'bold 16px OpenSansBold';
     ctx.fillText(user.name, 1030, 30, 220);
     ctx.font = '16px OpenSans';
     ctx.fillStyle = '#444';
@@ -192,7 +192,7 @@ const addDeparture = async (ctx, entry, x, y) => {
 const createPublicTransportOverlay = async data => {
     const canvas = createCanvas(1280, 960);
     const ctx = canvas.getContext('2d');
-    ctx.font = 'bold 16px OpenSans';
+    ctx.font = 'bold 16px OpenSansBold';
     ctx.fillStyle = 'black';
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';

@@ -1,5 +1,5 @@
 import fetch, { FormData, Blob } from 'node-fetch';
-import nodeCanvas from 'canvas';
+import nodeCanvas from '@napi-rs/canvas';
 import meeting from './meeting.js';
 
 /**
@@ -9,10 +9,10 @@ import meeting from './meeting.js';
  * @see https://eyeson-team.github.io/api/api-reference/#content-integration-aka-layers
  */
 
-const { createCanvas, loadImage, registerFont } = nodeCanvas;
+const { createCanvas, loadImage, GlobalFonts } = nodeCanvas;
 
-registerFont('./assets/fonts/Open_Sans/OpenSans-Regular.ttf', { family: 'OpenSans' });
-registerFont('./assets/fonts/Open_Sans/OpenSans-Bold.ttf', { family: 'OpenSans', weight: 'bold' });
+GlobalFonts.registerFromPath('./assets/fonts/Open_Sans/OpenSans-Regular.ttf', 'OpenSans');
+GlobalFonts.registerFromPath('./assets/fonts/Open_Sans/OpenSans-Bold.ttf', 'OpenSansBold');
 
 // just to look a bit nicer
 // otherwise ctx.rect() could have been used
@@ -89,7 +89,7 @@ const addDeparture = async (ctx, entry, x, y) => {
 const createPublicTransportOverlay = async data => {
     const canvas = createCanvas(1280, 960);
     const ctx = canvas.getContext('2d');
-    ctx.font = 'bold 16px OpenSans';
+    ctx.font = 'bold 16px OpenSansBold';
     ctx.fillStyle = 'black';
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';

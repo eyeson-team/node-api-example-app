@@ -1,4 +1,4 @@
-import { SSE } from 'express-sse';
+import SSE from 'express-sse';
 
 /**
  * Server Sent Events

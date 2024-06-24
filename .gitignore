@@ -1,5 +1,6 @@
 /www/
 /orig/
 /tests/
+/test/
 
 .DS_Store
