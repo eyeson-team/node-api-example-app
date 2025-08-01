@@ -1,4 +1,4 @@
-import eyesonAPI from 'eyeson-node';
+import eyesonAPI from '@eyeson/node';
 
 const apiKey = process.env.API_KEY;
 

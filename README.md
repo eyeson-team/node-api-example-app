@@ -38,9 +38,8 @@ This workshop contains chapters, each comes with special features and might use 
 More details can be found here:
 
 - https://developers.eyeson.team/
-- https://eyeson-team.github.io/api/api-reference/
 - https://github.com/eyeson-team/ghost
-- https://techblog.eyeson.team/
+- https://docs.eyeson.com/
 
 ## Questions
 

@@ -1,4 +1,4 @@
-import eyesonAPI from 'eyeson-node';
+import eyesonAPI from '@eyeson/node';
 import sse from './sse.js';
 
 /**
